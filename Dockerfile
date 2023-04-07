@@ -5,7 +5,7 @@ FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 
 # Copy website files to container
-COPY 2000 /usr/share/nginx/html
+COPY Myimage /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
