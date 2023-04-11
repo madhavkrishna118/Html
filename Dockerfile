@@ -9,7 +9,7 @@ ENV PATH $CATALINA_HOME/bin:$PATH
 RUN rm -rf $CATALINA_HOME/webapps/*
 
 # Copy your application war file to the container
-COPY your-application.war $CATALINA_HOME/webapps/ROOT.war
+COPY http://csci.viu.ca/~barskym/teaching/DM2012/labs/LAB6/Lab6A.war $CATALINA_HOME/webapps/ROOT.war
 
 # Set the timezone to your local timezone
 RUN ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
