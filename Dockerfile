@@ -1,16 +1,22 @@
-# Use nginx alpine image as base image
-FROM nginx:alpine
+# Use the official Tomcat 9 image as the base image
+FROM tomcat:9
 
-# Set working directory
-WORKDIR /usr/share/nginx/html
+# Set environment variables
+ENV CATALINA_HOME /usr/local/tomcat
+ENV PATH $CATALINA_HOME/bin:$PATH
 
-USER root
+# Remove the default Tomcat applications
+RUN rm -rf $CATALINA_HOME/webapps/*
 
-# Copy website files to container
-COPY html /usr/share/nginx/html
+# Copy your application war file to the container
+COPY your-application.war $CATALINA_HOME/webapps/ROOT.war
 
-# Expose port 80
-EXPOSE 80
+# Set the timezone to your local timezone
+RUN ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
 
-# Start nginx server
-CMD ["nginx", "-g", "daemon off;"]
+# Expose port 8080 for Tomcat
+EXPOSE 8080
+
+# Start Tomcat when the container launches
+CMD ["catalina.sh", "run"]
+
