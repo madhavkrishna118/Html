@@ -4,7 +4,7 @@ FROM nginx:alpine
 # Set working directory
 WORKDIR /usr/share/nginx/html
 
-USER root
+USER nginx
 
 # Copy website files to container
 COPY html /usr/share/nginx/html
